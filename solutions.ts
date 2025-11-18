@@ -1,4 +1,3 @@
-// Problem 1 Solving
 function formatValue(
   value: string | number | boolean
 ): string | number | boolean {
@@ -8,17 +7,110 @@ function formatValue(
   return value;
 }
 
-// console.log(formatValue("hello"));
-// console.log(formatValue(5));
-// console.log(formatValue(true));
-
-// Problem 2 Solving
-
 function getLength(value: string | any[]): number {
   if (typeof value === "string") return value.length;
   if (Array.isArray(value)) return value.length;
   return 0;
 }
 
-console.log(getLength("ismailnode solutions.ts"));
-console.log(getLength([10, 20, 30, 40]));
+class Person {
+  constructor(public name: string, public age: number) {}
+
+  getDetails() {
+    return `'Name: ${this.name}, Age: ${this.age}'`;
+  }
+}
+
+type Item = {
+  title: string;
+  rating: number;
+};
+
+function filterByRating(items: Item[]): Item[] {
+  return items.filter((item) => item.rating >= 4);
+}
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
+
+function filterActiveUsers(users: User[]): User[] {
+  return users.filter((user) => user.isActive === true);
+}
+
+interface Book {
+  title: string;
+  author: string;
+  publishedYear: number;
+  isAvailable: boolean;
+}
+
+function printBookDetails(book: Book): void {
+  console.log(
+    `Title: ${book.title}, Author: ${book.author}, Published: ${
+      book.publishedYear
+    }, Available: ${book.isAvailable ? "Yes" : "No"}`
+  );
+}
+
+function getUniqueValues<T extends Number | string>(
+  array1: T[],
+  array2: T[]
+): T[] {
+  const uniqueValues: T[] = [];
+
+  for (let i = 0; i < array1.length; i++) {
+    let exixts = false;
+
+    for (let j = 0; j < uniqueValues.length; j++) {
+      if (uniqueValues[j] === array1[i]) {
+        exixts = true;
+        break;
+      }
+    }
+
+    if (!exixts) {
+      uniqueValues.push(array1[i]!);
+    }
+  }
+
+  for (let i = 0; i < array2.length; i++) {
+    let exixts = false;
+    for (let j = 0; j < uniqueValues.length; j++) {
+      if (uniqueValues[j] === array2[i]) {
+        exixts = true;
+        break;
+      }
+    }
+
+    if (!exixts) {
+      uniqueValues.push(array2[i]!);
+    }
+  }
+
+  return uniqueValues;
+}
+
+type Products = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+function calculateTotalPrice(products: Products[]): number {
+  let totalPrice = 0;
+  products.map((product) => {
+    const discountPrice = product.discount || 0;
+    totalPrice += product.price * product.quantity * (1 - discountPrice / 100);
+  });
+
+  if (totalPrice === 0) {
+    return 0;
+  } else {
+    return totalPrice;
+  }
+}
