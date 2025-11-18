@@ -102,15 +102,13 @@ type Products = {
 };
 
 function calculateTotalPrice(products: Products[]): number {
-  let totalPrice = 0;
-  products.map((product) => {
-    const discountPrice = product.discount || 0;
-    totalPrice += product.price * product.quantity * (1 - discountPrice / 100);
-  });
+  return products.reduce((total, product) => {
+    const totalPrices = product.price * product.quantity;
 
-  if (totalPrice === 0) {
-    return 0;
-  } else {
-    return totalPrice;
-  }
+    const finalPrice = product.discount
+      ? totalPrices * (1 - product.discount / 100)
+      : totalPrices;
+
+    return total + finalPrice;
+  }, 0);
 }
