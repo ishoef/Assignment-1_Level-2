@@ -73,7 +73,7 @@ function getUniqueValues<T extends Number | string>(
     }
 
     if (!exixts) {
-      uniqueValues.push(array1[i]!);
+      uniqueValues[uniqueValues.length] = array1[i]!;
     }
   }
 
@@ -87,7 +87,7 @@ function getUniqueValues<T extends Number | string>(
     }
 
     if (!exixts) {
-      uniqueValues.push(array2[i]!);
+      uniqueValues[uniqueValues.length] = array2[i]!;
     }
   }
 
