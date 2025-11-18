@@ -66,11 +66,11 @@ type User = {
     age: number;
 };
 
-type UserKeys = keyof User; // "name" | "age"
+type UserKeys = keyof User;
 
-const key1: UserKeys = "name"; // ✅ ঠিক আছে
-const key2: UserKeys = "age";  // ✅ ঠিক আছে
-// const key3: UserKeys = "role"; // ❌ ভুল, কারণ 'role' User-এর key নয়
+const key1: UserKeys = "name"; 
+const key2: UserKeys = "age";  
+
 
 
 ব্যবহারিক উদাহরণ:
@@ -80,7 +80,7 @@ function getProperty<T, K extends keyof T>(obj: T, key: K) {
 }
 
 const user = { name: "Rahim", age: 25 };
-const userName = getProperty(user, "name"); // "Rahim"
+const userName = getProperty(user, "name"); 
 
 
 এভাবে আমরা compile-time-এ নিশ্চিত হতে পারি যে শুধুমাত্র বৈধ key ব্যবহার করা হচ্ছে, যা runtime error কমায়।
